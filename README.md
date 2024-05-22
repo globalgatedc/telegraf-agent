@@ -7,7 +7,7 @@ New-Item -ItemType Directory -Path 'C:\Program Files\' -Name Telegraf; New-Item 
 
 ## - Download .exe
 ```Powershell
-cd 'C:\Program Files\Telegraf'; wget https://dl.influxdata.com/telegraf/releases/telegraf-1.30.0_windows_amd64.zip -UseBasicParsing -OutFile telegraf-1.30.0_windows_amd64.zip; Expand-Archive .\telegraf-nightly_windows_amd64.zip -DestinationPath 'C:\Program Files\Telegraf'
+cd 'C:\Program Files\Telegraf'; wget https://dl.influxdata.com/telegraf/releases/telegraf-1.30.0_windows_amd64.zip -UseBasicParsing -OutFile telegraf-1.30.0_windows_amd64.zip; Expand-Archive .\telegraf-1.30.0_windows_amd64.zip -DestinationPath 'C:\Program Files\Telegraf'; Remove-Item -Path 'C:\Program Files\Telegraf\telegraf-1.30.0_windows_amd64.zip';Move-Item -Path 'C:\Program Files\Telegraf\telegraf-1.30.0\telegraf.exe' -Destination 'C:\Program Files\Telegraf'; Remove-Item -Path 'C:\Program Files\Telegraf\telegraf-1.30.0' -Recurse
 ```
 ## - Set Enviroment Variables
 ```Powershell
