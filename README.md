@@ -2,12 +2,12 @@
 
 ## - Create Program Directories
 ``` Powershell
-New-Item -ItemType Directory -Path "C:\Program Files\" -Name Telegraf; New-Item -ItemType Directory -Path "C:\Program Files\Telegraf" -Name conf;
+New-Item -ItemType Directory -Path 'C:\Program Files\' -Name Telegraf; New-Item -ItemType Directory -Path 'C:\Program Files\Telegraf' -Name conf;
 ```
 
 ## - Download .exe
 ```Powershell
-cd C:/Program Files/Telegraf; wget https://dl.influxdata.com/telegraf/releases/telegraf-1.30.0_windows_amd64.zip -UseBasicParsing -OutFile telegraf-1.30.0_windows_amd64.zip; Expand-Archive .\telegraf-nightly_windows_amd64.zip -DestinationPath 'C:\Program Files\Telegraf'
+cd 'C:\Program Files\Telegraf'; wget https://dl.influxdata.com/telegraf/releases/telegraf-1.30.0_windows_amd64.zip -UseBasicParsing -OutFile telegraf-1.30.0_windows_amd64.zip; Expand-Archive .\telegraf-nightly_windows_amd64.zip -DestinationPath 'C:\Program Files\Telegraf'
 ```
 ## - Set Enviroment Variables
 ```Powershell
