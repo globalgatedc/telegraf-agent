@@ -16,7 +16,7 @@ $env:ORG_NAME = 'your organization name'; $env:INFLUX_URL = 'your influx url'; $
 
 ## - Download .conf
 ```Powershell
-wget https://raw.githubusercontent.com/globalgatedc/telegraf-agent/main/telegraf.conf -UseBasicParsing -OutFile telegraf.conf -DestinationPath 'C:\Program Files\Telegraf\conf\'
+wget https://raw.githubusercontent.com/globalgatedc/telegraf-agent/main/telegraf.conf -UseBasicParsing -OutFile 'C:\Program Files\Telegraf\conf\telegraf.conf'
 ```
 
 ## - Service Install 
