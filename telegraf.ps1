@@ -55,6 +55,43 @@ try {
     exit 1
 }
 
+# Escolher o arquivo de configuracao
+Write-Host "Escolha qual arquivo de configuracao deseja baixar:"
+Write-Host "1- Somente Agent"
+Write-Host "2- AD e DNS"
+Write-Host "3- RDP e RDS"
+Write-Host "4- IIS e .NET e ASP.NET"
+$option = Read-Host "Digite o numero correspondente a opcao desejada"
+
+switch ($option) {
+    '1' {
+        $configURL = 'https://raw.githubusercontent.com/globalgatedc/telegraf-agent/main/telegraf_agent.conf'
+    }
+    '2' {
+        $configURL = 'https://raw.githubusercontent.com/globalgatedc/telegraf-agent/main/telegraf_ad_dns.conf'
+    }
+    '3' {
+        $configURL = 'https://raw.githubusercontent.com/globalgatedc/telegraf-agent/main/telegraf_rdp_rds.conf'
+    }
+    '4' {
+        $configURL = 'https://raw.githubusercontent.com/globalgatedc/telegraf-agent/main/telegraf_iis_dotnet_aspnet.conf'
+    }
+    default {
+        Write-Host "Opcao invalida. Saindo..." -ForegroundColor Red
+        exit 1
+    }
+}
+
+# Baixar o arquivo de configuracao
+Write-Host "Baixando o arquivo de configuracao..."
+try {
+    wget $configURL -UseBasicParsing -OutFile 'C:\Program Files\Telegraf\conf\telegraf.conf' -ErrorAction Stop
+    Write-Host "Arquivo de configuracao baixado com sucesso."
+} catch {
+    Write-Host "Erro ao baixar o arquivo de configuracao: $_" -ForegroundColor Red
+    exit 1
+}
+
 # Ler o arquivo de configuracao
 $telegrafConfPath = 'C:\Program Files\Telegraf\conf\telegraf.conf'
 try {
