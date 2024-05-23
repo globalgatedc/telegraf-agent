@@ -55,48 +55,28 @@ try {
     exit 1
 }
 
-# Definir variaveis de ambiente
-Write-Host "Definindo variaveis de ambiente..."
-$env:ORG_NAME = Read-Host "Digite o nome da organizacao"
-$env:INFLUX_URL = Read-Host "Digite a URL do InfluxDB"
-$env:BUCKET_NAME = Read-Host "Digite o nome do bucket"
-$env:BUCKET_TOKEN = Read-Host "Digite o token do bucket"
-Write-Host "Variaveis de ambiente definidas com sucesso."
-
-# Escolher o arquivo de configuracao
-Write-Host "Escolha qual arquivo de configuracao deseja baixar:"
-Write-Host "1- Somente Agent"
-Write-Host "2- AD e DNS"
-Write-Host "3- RDP e RDS"
-Write-Host "4- IIS e .NET e ASP.NET"
-$option = Read-Host "Digite o numero correspondente a opcao desejada"
-
-switch ($option) {
-    '1' {
-        $configURL = 'https://raw.githubusercontent.com/globalgatedc/telegraf-agent/main/telegraf.conf'
-    }
-    '2' {
-        $configURL = 'https://raw.githubusercontent.com/globalgatedc/telegraf-agent/main/telegraf-ad-dns.conf'
-    }
-    '3' {
-        $configURL = 'https://raw.githubusercontent.com/globalgatedc/telegraf-agent/main/telegraf-rdp-rds.conf'
-    }
-    '4' {
-        $configURL = 'https://raw.githubusercontent.com/globalgatedc/telegraf-agent/main/telegraf-iis-dotnet.conf'
-    }
-    default {
-        Write-Host "Opcao invalida. Saindo..." -ForegroundColor Red
-        exit 1
-    }
+# Ler o arquivo de configuracao
+$telegrafConfPath = 'C:\Program Files\Telegraf\conf\telegraf.conf'
+try {
+    $telegrafConf = Get-Content $telegrafConfPath -ErrorAction Stop
+} catch {
+    Write-Host "Erro ao ler o arquivo de configuracao: $_" -ForegroundColor Red
+    exit 1
 }
 
-# Baixar o arquivo de configuracao
-Write-Host "Baixando o arquivo de configuracao..."
+# Substituir os placeholders no arquivo de configuracao
+$bucketName = Read-Host "Digite o nome do bucket"
+$bucketToken = Read-Host "Digite o token do bucket"
+
+$telegrafConf = $telegrafConf -replace 'BUCKET_NAME', $bucketName
+$telegrafConf = $telegrafConf -replace 'BUCKET_TOKEN', $bucketToken
+
+# Escrever o arquivo de configuracao atualizado
 try {
-    wget $configURL -UseBasicParsing -OutFile 'C:\Program Files\Telegraf\conf\telegraf.conf' -ErrorAction Stop
-    Write-Host "Arquivo de configuracao baixado com sucesso."
+    $telegrafConf | Set-Content $telegrafConfPath -ErrorAction Stop
+    Write-Host "Arquivo de configuracao atualizado com sucesso."
 } catch {
-    Write-Host "Erro ao baixar o arquivo de configuracao: $_" -ForegroundColor Red
+    Write-Host "Erro ao escrever o arquivo de configuracao: $_" -ForegroundColor Red
     exit 1
 }
 
