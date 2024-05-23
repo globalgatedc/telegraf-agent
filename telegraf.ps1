@@ -65,16 +65,16 @@ $option = Read-Host "Digite o numero correspondente a opcao desejada"
 
 switch ($option) {
     '1' {
-        $configURL = 'https://raw.githubusercontent.com/globalgatedc/telegraf-agent/main/telegraf_agent.conf'
+        $configURL = 'https://raw.githubusercontent.com/globalgatedc/telegraf-agent/main/telegraf.conf'
     }
     '2' {
-        $configURL = 'https://raw.githubusercontent.com/globalgatedc/telegraf-agent/main/telegraf_ad_dns.conf'
+        $configURL = 'https://raw.githubusercontent.com/globalgatedc/telegraf-agent/main/telegraf-ad-dns.conf'
     }
     '3' {
-        $configURL = 'https://raw.githubusercontent.com/globalgatedc/telegraf-agent/main/telegraf_rdp_rds.conf'
+        $configURL = 'https://raw.githubusercontent.com/globalgatedc/telegraf-agent/main/telegraf-rdp-rds.conf'
     }
     '4' {
-        $configURL = 'https://raw.githubusercontent.com/globalgatedc/telegraf-agent/main/telegraf_iis_dotnet_aspnet.conf'
+        $configURL = 'https://raw.githubusercontent.com/globalgatedc/telegraf-agent/main/telegraf-iis-dotnet.conf'
     }
     default {
         Write-Host "Opcao invalida. Saindo..." -ForegroundColor Red
