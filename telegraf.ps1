@@ -127,4 +127,14 @@ try {
     exit 1
 }
 
+# Iniciar o servico
+Write-Host "Iniciando o servico..."
+try {
+    .\telegraf.exe --service start
+    Write-Host "Servico iniciado com sucesso."
+} catch {
+    Write-Host "Erro ao iniciar o servico: $_" -ForegroundColor Red
+    exit 1
+}
+
 Write-Host "Script concluido com sucesso."
