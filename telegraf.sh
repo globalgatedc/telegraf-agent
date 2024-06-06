@@ -38,11 +38,11 @@ esac
 
 case $pkg_mng in
 apt)
-	# influxdata-archive_compat.key gpg fingerprint: 9d539d90d3328dc7d6c8d3b9d8ff8e1f7df8b07e
+	DEBIAN_FRONTEND=noninteractive
 	curl -s https://repos.influxdata.com/influxdata-archive_compat.key >influxdata-archive_compat.key
 	echo '393e8779c89ac8d958f81f942f9ad7fb82a25e133faddaf92e15b16e6ac9ce4c influxdata-archive_compat.key' | sha256sum -c && cat influxdata-archive_compat.key | gpg --dearmor | tee /etc/apt/trusted.gpg.d/influxdata-archive_compat.gpg >/dev/null
 	echo 'deb [signed-by=/etc/apt/trusted.gpg.d/influxdata-archive_compat.gpg] https://repos.influxdata.com/debian stable main' | tee /etc/apt/sources.list.d/influxdata.list
-	apt-get update && apt-get install telegraf
+	apt-get update && apt-get install --no-install-recommends --no-upgrade -y telegraf
 	;;
 yum)
 	cat <<EOF | tee /etc/yum.repos.d/influxdb.repo
@@ -56,7 +56,7 @@ EOF
 	yum install telegraf
 	;;
 pacman)
-	paru -S telegraf
+	pacman -S telegraf
 	;;
 esac
 
