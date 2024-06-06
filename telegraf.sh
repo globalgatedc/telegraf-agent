@@ -66,7 +66,6 @@ read -p "Digite o número correspondente à opção desejada: " option
 
 case $option in
 1)
-	# @TODO alterar o script, esse contem chaves unicas do windows
 	configURL="https://raw.githubusercontent.com/globalgatedc/telegraf-agent/main/telegraf_linux.conf"
 	;;
 *)
