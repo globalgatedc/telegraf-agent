@@ -90,4 +90,14 @@ read -p "Digite o token do bucket: " bucketToken
 sed -i "s/BUCKET_NAME/$bucketName/g" $telegrafConf
 sed -i "s/BUCKET_TOKEN/$bucketToken/g" $telegrafConf
 
-# echo "Script concluído com sucesso."
+# Habilitar e iniciar o serviço
+systemctl enable --now telegraf
+
+if systemctl is-active --quiet telegraf; then
+	echo "The $SERVICE_NAME service is running."
+	echo "Script concluído com sucesso."
+else
+	echo "The $SERVICE_NAME service is not running."
+	# Show service logs
+	journalctl -xeu telegraf
+fi
