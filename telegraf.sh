@@ -63,23 +63,11 @@ esac
 # # Escolher o arquivo de configuração
 echo "Escolha qual arquivo de configuração deseja baixar:"
 echo "1- Somente Agent"
-echo "2- AD e DNS"
-echo "3- RDP e RDS"
-echo "4- IIS e .NET e ASP.NET"
 read -p "Digite o número correspondente à opção desejada: " option
 
 case $option in
 1)
-	configURL="https://raw.githubusercontent.com/globalgatedc/telegraf-agent/main/telegraf_agent.conf"
-	;;
-2)
-	configURL="https://raw.githubusercontent.com/globalgatedc/telegraf-agent/main/telegraf_ad_dns.conf"
-	;;
-3)
-	configURL="https://raw.githubusercontent.com/globalgatedc/telegraf-agent/main/telegraf_rdp_rds.conf"
-	;;
-4)
-	configURL="https://raw.githubusercontent.com/globalgatedc/telegraf-agent/main/telegraf_iis_dotnet_aspnet.conf"
+	configURL="https://raw.githubusercontent.com/globalgatedc/telegraf-agent/main/telegraf.conf"
 	;;
 *)
 	echo "Opção inválida. Saindo..."
