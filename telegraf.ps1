@@ -141,7 +141,7 @@ switch ($option) {
 # Baixar o arquivo de configuracao
 Write-Host "Baixando o arquivo de configuracao..."
 try {
-    wget $configURL -UseBasicParsing -OutFile 'C:\Program Files\Telegraf\conf\telegraf.conf' -ErrorAction Stop
+    iwr $configURL -UseBasicParsing -OutFile 'C:\Program Files\Telegraf\conf\telegraf.conf' -ErrorAction Stop
     Write-Host "Arquivo de configuracao baixado com sucesso."
 } catch {
     Write-Host "Erro ao baixar o arquivo de configuracao: $_" -ForegroundColor Red
