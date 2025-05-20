@@ -184,7 +184,7 @@ try {
 # Instalar o servico
 Write-Host "Instalando o servico..."
 try {
-    .\telegraf.exe --config 'C:\Program Files\Telegraf\conf\telegraf.conf' service install
+    .\telegraf.exe --config 'C:\Program Files\Telegraf\conf\telegraf.conf' --service install
     Write-Host "Servico instalado com sucesso."
 } catch {
     Write-Host "Erro ao instalar o servico: $_" -ForegroundColor Red
@@ -194,7 +194,7 @@ try {
 # Iniciar o servico
 Write-Host "Iniciando o servico..."
 try {
-    .\telegraf.exe service start
+    .\telegraf.exe --service start
     Write-Host "Servico iniciado com sucesso."
 } catch {
     Write-Host "Erro ao iniciar o servico: $_" -ForegroundColor Red
